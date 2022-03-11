@@ -1,0 +1,39 @@
+<div class="container w-50 mt-4">
+    <h2>Iniciar sesion</h2>
+    <form class="row g-3" [formGroup] = "userForm">
+        <div class="col-md-6">
+            <label for="email" 
+                class="form-label">Correo Electronico</label>
+            <input type="text"
+                [class.is-invalid]="userForm.get('email')?.touched && userForm.get('email')?.invalid"
+                formControlName = "email" 
+                class="form-control" 
+                id="email">
+            <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid" class="invalid-feedback">
+              Formato de correo incorrecto
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="password" 
+                class="form-label">Contraseña</label>
+            <input type="password" 
+                [class.is-invalid]="userForm.get('password')?.touched && userForm.get('password')?.invalid"
+                formControlName = "password" 
+                class="form-control" 
+                id="password">
+            <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="invalid-feedback">
+              Campo obligatorio
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-primary" (click)="login()">
+              <span
+                *ngIf="loadLogin" 
+                class="spinner-border spinner-border-sm" 
+                role="status" 
+                aria-hidden="true"></span>
+              Iniciar sesion
+            </button>
+          </div>
+    </form>
+</div>
